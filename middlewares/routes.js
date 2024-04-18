@@ -3,6 +3,7 @@ const categoryRouter = require("../routers/categoryRouter");
 const productRouter = require("../routers/productRouter");
 const cartRouter = require("../routers/cartRouter");
 const authGoogleRouter = require("../routers/authGoogleRouter");
+const authFacebookRouter = require("../routers/authFacebookRouter");
 
 module.exports = (app) => {
   app.use("/api/v1/user", userRouter);
@@ -10,4 +11,5 @@ module.exports = (app) => {
   app.use("/api/v1/product", productRouter);
   app.use("/api/v1/cart", cartRouter);
   app.use("/auth/google", authGoogleRouter);
+  app.use("/auth/facebook", authFacebookRouter);
 };
