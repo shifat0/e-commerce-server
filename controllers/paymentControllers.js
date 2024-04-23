@@ -12,19 +12,19 @@ const path = require("path");
 
 module.exports.ipn = async (req, res) => {
   console.log(req.body);
-  // const payment = new Payment(req.body);
-  // const tran_id = payment["tran_id"];
-  // if (payment["status"] === "VALID") {
-  //   const order = await Order.updateOne(
-  //     { transaction_id: tran_id },
-  //     { status: "Complete" }
-  //   );
-  //   await CartItem.deleteMany(order.cartItems);
-  // } else {
-  //   await Order.deleteOne({ transaction_id: tran_id });
-  // }
-  // await payment.save();
-  // return res.status(200).send("IPN");
+  const payment = new Payment(req.body);
+  const tran_id = payment["tran_id"];
+  if (payment["status"] === "VALID") {
+    const order = await Order.updateOne(
+      { transaction_id: tran_id },
+      { status: "Complete" }
+    );
+    await CartItem.deleteMany(order.cartItems);
+  } else {
+    await Order.deleteOne({ transaction_id: tran_id });
+  }
+  await payment.save();
+  return res.status(200).send("IPN");
 };
 
 module.exports.initPayment = async (req, res) => {
@@ -53,8 +53,9 @@ module.exports.initPayment = async (req, res) => {
 
   // Set the urls
   payment.setUrls({
-    success:
-      "https://e-commerce-server-unig.onrender.com/api/v1/payment/success", // If payment Succeed
+    // success:
+    // "https://e-commerce-server-unig.onrender.com/api/v1/payment/success",
+    success: "http://localhost:3001/",
     fail: "yoursite.com/fail", // If payment failed
     cancel: "yoursite.com/cancel", // If user cancel payment
     ipn: "https://e-commerce-server-unig.onrender.com/api/v1/payment/ipn", // SSLCommerz will send http post request in this link
