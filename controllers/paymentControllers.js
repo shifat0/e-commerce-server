@@ -53,9 +53,9 @@ module.exports.initPayment = async (req, res) => {
 
   // Set the urls
   payment.setUrls({
-    // success:
-    // "https://e-commerce-server-unig.onrender.com/api/v1/payment/success",
-    success: "http://localhost:3001/",
+    success:
+      "https://e-commerce-server-unig.onrender.com/api/v1/payment/success",
+    // success: "http://localhost:3001/",
     fail: "yoursite.com/fail", // If payment failed
     cancel: "yoursite.com/cancel", // If user cancel payment
     ipn: "https://e-commerce-server-unig.onrender.com/api/v1/payment/ipn", // SSLCommerz will send http post request in this link

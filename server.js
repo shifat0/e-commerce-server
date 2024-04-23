@@ -2,6 +2,8 @@ require("dotenv/config");
 const app = require("./app");
 const mongoose = require("mongoose");
 
+global.__basedir = __dirname;
+
 mongoose
   .connect(process.env.MONGODB_URL_LOCAL)
   .then(() => console.log("Connected to MongoDB!"))
