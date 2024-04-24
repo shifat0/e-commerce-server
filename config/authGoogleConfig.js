@@ -8,7 +8,9 @@ const googleStrategy = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:5000/auth/google/redirect",
+    // callbackURL: "http://localhost:5000/auth/google/redirect",
+    callbackURL:
+      "https://e-commerce-server-unig.onrender.com/auth/google/redirect",
   },
   async (accessToken, refreshToken, profile, cb) => {
     //console.log("Profile: ", profile);
@@ -46,7 +48,9 @@ const facebookStrategy = new FacebookStrategy(
   {
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:5000/auth/facebook/redirect",
+    // callbackURL: "http://localhost:5000/auth/facebook/redirect",
+    callbackURL:
+      "https://e-commerce-server-unig.onrender.com/auth/facebook/redirect",
     profileFields: ["id", "displayName", "photos", "email"],
   },
   async (accessToken, refreshToken, profile, cb) => {
