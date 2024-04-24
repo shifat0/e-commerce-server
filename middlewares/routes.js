@@ -6,6 +6,7 @@ const authGoogleRouter = require("../routers/authGoogleRouter");
 const authFacebookRouter = require("../routers/authFacebookRouter");
 const paymentRouter = require("../routers/paymentRouter");
 const profileRouter = require("../routers/profileRouter");
+const orderRouter = require("../routers/orderRouter");
 
 module.exports = (app) => {
   app.get("/", (_, res) => res.send("server is running").sendStatus(200));
@@ -17,4 +18,5 @@ module.exports = (app) => {
   app.use("/auth/facebook", authFacebookRouter);
   app.use("/api/v1/payment", paymentRouter);
   app.use("/api/v1/profile", profileRouter);
+  app.use("/api/v1/order", orderRouter);
 };
