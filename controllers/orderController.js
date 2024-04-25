@@ -7,7 +7,10 @@ module.exports.getOrdersByUser = async (req, res) => {
 
     if (!ObjectId.isValid(userId)) throw new Error("invalid user id");
 
-    const orders = await Order.find({ user: new ObjectId(userId) });
+    const orders = await Order.find({ user: userId }).populate({
+      path: "cartItems",
+      populate: { path: "product", model: "Product", select: "name" },
+    });
 
     if (!orders.length) res.send("There is no order for this user");
 
