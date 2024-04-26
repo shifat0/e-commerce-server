@@ -35,7 +35,7 @@ module.exports.getReviewByProduct = async (req, res) => {
   if (!ObjectId.isValid(productId))
     return res.status(400).send("invalid product id");
 
-  const review = await Review.find({ product_id: productId });
+  const review = await Review.find({ product_id: productId }).populate("user");
   return res.status(200).send({
     message: "Request resolved successfully",
     data: review,
