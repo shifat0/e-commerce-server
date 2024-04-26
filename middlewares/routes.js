@@ -8,6 +8,7 @@ const paymentRouter = require("../routers/paymentRouter");
 const profileRouter = require("../routers/profileRouter");
 const orderRouter = require("../routers/orderRouter");
 const reviewRouter = require("../routers/reviewRouter");
+const couponRouter = require("../routers/couponRouter");
 
 module.exports = (app) => {
   app.get("/", (_, res) => res.send("server is running").sendStatus(200));
@@ -21,4 +22,5 @@ module.exports = (app) => {
   app.use("/api/v1/profile", profileRouter);
   app.use("/api/v1/order", orderRouter);
   app.use("/api/v1/review", reviewRouter);
+  app.use("/api/v1/coupon", couponRouter);
 };
